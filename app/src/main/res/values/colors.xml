@@ -4,9 +4,15 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <color name="general_background">#1B1B1B</color>
+
     <color name="list_item_text_color_black">#202020</color>
-    <color name="list_item_text_color_white">#EDEDED</color>
+    <color name="list_item_text_color_white">#FFFFFF</color>
 
     <color name="toolbar_background">#6200EE</color>
+
+    <color name="detail_activity_card_background">#33373A</color>
+
+    <color name="circle_btn_stroke">#009688</color>
 
 </resources>

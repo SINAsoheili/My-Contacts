@@ -11,4 +11,11 @@
 
     <dimen name="toolbar_image_size">45dp</dimen>
 
+    <dimen name="detail_activity_large_margin">100dp</dimen>
+    <dimen name="detail_activity_image_size">210dp</dimen>
+    <dimen name="detail_activity_height_background">250dp</dimen>
+    <dimen name="detail_activity_btn_size">50dp</dimen>
+    <dimen name="detail_activity_padding_text_view">10dp</dimen>
+    <dimen name="detail_activity_item_text_size">18sp</dimen>
+
 </resources>

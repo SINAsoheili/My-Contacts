@@ -42,4 +42,16 @@ public class DetailUserContactPresenter implements DetailUserContactContract.Det
         intent.setData(Uri.parse("tel:"+userContact.getPhone()));
         context.startActivity(intent);
     }
+
+    @Override
+    public void message(UserContact userContact)
+    {
+        if(userContact == null)
+        {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("sms:"+userContact.getPhone()));
+        context.startActivity(intent);
+    }
 }

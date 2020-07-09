@@ -4,16 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import ir.sinasoheili.mycontacts.MODEL.UserContact;
 import ir.sinasoheili.mycontacts.PRESENTER.DetailUserContactContract;
@@ -25,7 +22,13 @@ public class DetailUserContact extends AppCompatActivity implements DetailUserCo
     private final String[] PERMISSION = {Manifest.permission.CALL_PHONE};
     private final int REQUEST_CODE = 200;
 
+    private ImageView imageView;
     private Button btnCall;
+    private Button btnMessage;
+    private Button btnEdit;
+    private TextView tvName;
+    private TextView tvPhone;
+    private TextView tvDate;
 
     private UserContact userContact;
     private DetailUserContactContract.DetailUserContactContract_presenter presenter;
@@ -43,15 +46,35 @@ public class DetailUserContact extends AppCompatActivity implements DetailUserCo
         if((bundle != null)&&(bundle.containsKey(UserContact.INTENT_KEY)))
         {
             userContact = (UserContact) bundle.get(UserContact.INTENT_KEY);
+            fillContent();
         }
     }
 
     private void initObj()
     {
-        btnCall = findViewById(R.id.btn_call);
+        imageView = findViewById(R.id.detail_activity_iv);
+
+        btnCall = findViewById(R.id.detail_activity_btn_call);
         btnCall.setOnClickListener(this);
 
+        btnMessage = findViewById(R.id.detail_activity_btn_message);
+        btnMessage.setOnClickListener(this);
+
+        btnEdit = findViewById(R.id.detail_activity_btn_edit);
+        btnEdit.setOnClickListener(this);
+
+        tvName = findViewById(R.id.detail_activity_tv_name);
+        tvPhone = findViewById(R.id.detail_activity_tv_phone);
+        tvDate = findViewById(R.id.detail_activity_tv_birth_date);
+
         presenter = new DetailUserContactPresenter(DetailUserContact.this , this);
+    }
+
+    private void fillContent()
+    {
+        tvName.setText(userContact.getName());
+        tvPhone.setText(userContact.getPhone());
+        tvDate.setText(userContact.getBirthDate());
     }
 
     @Override
@@ -63,6 +86,14 @@ public class DetailUserContact extends AppCompatActivity implements DetailUserCo
             {
                 presenter.call(userContact);
             }
+        }
+        else if(v.equals(btnMessage))
+        {
+            presenter.message(userContact);
+        }
+        else if(v.equals(btnEdit))
+        {
+            Toast.makeText(this, "EDIT", Toast.LENGTH_SHORT).show();
         }
     }
 

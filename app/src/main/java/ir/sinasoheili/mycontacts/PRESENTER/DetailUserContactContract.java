@@ -13,5 +13,6 @@ public interface DetailUserContactContract
     {
         public void call(UserContact userContact);
         public void dial(UserContact userContact);
+        public void message(UserContact userContact);
     }
 }
