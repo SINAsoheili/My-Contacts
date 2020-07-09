@@ -17,6 +17,7 @@ import android.widget.ListView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import ir.sinasoheili.mycontacts.MODEL.UserContact;
 import ir.sinasoheili.mycontacts.PRESENTER.MainActivityContract;
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             contacts = new ArrayList<>();
         }
 
-        ArrayAdapter<UserContact> adapter =  new ArrayAdapter<>(this , android.R.layout.simple_list_item_1 , contacts);
+        UserContractListAdapter adapter = new UserContractListAdapter(getApplicationContext() , contacts);
         lv.setAdapter(adapter);
     }
 
