@@ -1,6 +1,7 @@
 package ir.sinasoheili.mycontacts.PRESENTER;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,20 @@ public class MainActivityPresenter implements MainActivityContract.MainActivityC
     @Override
     public void readAllContact()
     {
-        ArrayList<UserContact> contacts = ContactManager.readAllContact(context);
+        ArrayList<UserContact> contacts;
+
+        ContactPreferenceManager pref = ContactPreferenceManager.getInstance(context);
+        if(pref.isContactStore()) // read contact from preferences
+        {
+            contacts = pref.getContact();
+        }
+        else //read contact from user device AND write to preference
+        {
+            contacts = ContactManager.readAllContact(context);
+
+            pref.StoreContact(contacts);
+        }
+
         mainActivityView.showContacts(contacts);
     }
 }
