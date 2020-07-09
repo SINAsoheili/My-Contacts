@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="list_item_text_color">#202020</color>
+    <color name="list_item_text_color_black">#202020</color>
+    <color name="list_item_text_color_white">#EDEDED</color>
+
+    <color name="toolbar_background">#6200EE</color>
 
 </resources>

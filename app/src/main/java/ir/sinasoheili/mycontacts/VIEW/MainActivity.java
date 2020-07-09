@@ -12,7 +12,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -24,9 +26,9 @@ import ir.sinasoheili.mycontacts.PRESENTER.MainActivityContract;
 import ir.sinasoheili.mycontacts.PRESENTER.MainActivityPresenter;
 import ir.sinasoheili.mycontacts.R;
 
-public class MainActivity extends AppCompatActivity implements MainActivityContract.MainActivityContract_view, AdapterView.OnItemClickListener
-{
+public class MainActivity extends AppCompatActivity implements MainActivityContract.MainActivityContract_view, AdapterView.OnItemClickListener, View.OnClickListener {
     private ListView lv;
+    private Button btnAddContact;
 
     private final int REQUEST_CODE = 100; //request code for read contact
     private final String[] PERMISSIONS = {Manifest.permission.READ_CONTACTS};
@@ -54,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     {
         lv = findViewById(R.id.lv_contact_list);
         lv.setOnItemClickListener(this);
+
+        btnAddContact = findViewById(R.id.toolbar_btn_add_contact);
+        btnAddContact.setOnClickListener(this);
 
         presenter = new MainActivityPresenter(MainActivity.this , this);
     }
@@ -98,5 +103,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         UserContact uc = (UserContact) parent.getItemAtPosition(position);
         intent.putExtra(UserContact.INTENT_KEY , uc);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        if(v.equals(btnAddContact))
+        {
+            Toast.makeText(MainActivity.this , "click" , Toast.LENGTH_SHORT).show();
+        }
     }
 }

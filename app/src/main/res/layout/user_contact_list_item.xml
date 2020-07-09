@@ -28,7 +28,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/medium_margin"
         android:textSize="@dimen/list_item_text_size"
-        android:textColor="@color/list_item_text_color"
+        android:textColor="@color/list_item_text_color_black"
         />
 
 </RelativeLayout>
