@@ -2,8 +2,12 @@ package ir.sinasoheili.mycontacts.MODEL;
 
 import androidx.annotation.NonNull;
 
-public class UserContact
+import java.io.Serializable;
+
+public class UserContact implements Serializable
 {
+    public static final String INTENT_KEY = "USER_CONTACT";
+
     private String name;
     private String phone;
     private String birthDate;

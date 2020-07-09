@@ -5,9 +5,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -20,7 +23,7 @@ import ir.sinasoheili.mycontacts.PRESENTER.MainActivityContract;
 import ir.sinasoheili.mycontacts.PRESENTER.MainActivityPresenter;
 import ir.sinasoheili.mycontacts.R;
 
-public class MainActivity extends AppCompatActivity implements MainActivityContract.MainActivityContract_view
+public class MainActivity extends AppCompatActivity implements MainActivityContract.MainActivityContract_view, AdapterView.OnItemClickListener
 {
     private ListView lv;
 
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private void InitObj()
     {
         lv = findViewById(R.id.lv_contact_list);
+        lv.setOnItemClickListener(this);
 
         presenter = new MainActivityPresenter(MainActivity.this , this);
     }
@@ -84,5 +88,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private void showMessage(String text)
     {
         Snackbar.make(lv , text , Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
+        Intent intent = new Intent(MainActivity.this , DetailUserContact.class);
+        UserContact uc = (UserContact) parent.getItemAtPosition(position);
+        intent.putExtra(UserContact.INTENT_KEY , uc);
+        startActivity(intent);
     }
 }
