@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Contacts</string>
+
+    <string name="not_permission">if you don\'t get %s permission this application can\'t work properly</string>
 </resources>
