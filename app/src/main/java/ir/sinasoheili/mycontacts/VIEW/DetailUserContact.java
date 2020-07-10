@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -153,5 +155,17 @@ public class DetailUserContact extends AppCompatActivity implements DetailUserCo
     {
         userContact = newUserContact;
         fillContent();
+    }
+
+    @Subscribe
+    public void deleteContact(Boolean deleteContact)
+    {
+        showMessage(getString(R.string.delete_item));
+        finish();
+    }
+
+    private void showMessage(String text)
+    {
+        Toast.makeText(getBaseContext() , text , Toast.LENGTH_SHORT).show();
     }
 }

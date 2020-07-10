@@ -110,4 +110,21 @@ public class ContactPreferenceManager
         return updateContact(context , preUserContact , newName , newPhone , "");
     }
 
+    //delete contact
+    public void deleteContact(Context context , UserContact PreUserContact)
+    {
+        ContactPreferenceManager pref = getInstance(context);
+        ArrayList<UserContact> contacts = pref.getContact();
+
+        for(int i=0 ; i<contacts.size() ; i++)
+        {
+            if(contacts.get(i).getId().equals(PreUserContact.getId()))
+            {
+                contacts.remove(i);
+            }
+        }
+
+        pref.StoreContact(contacts);
+    }
+
 }

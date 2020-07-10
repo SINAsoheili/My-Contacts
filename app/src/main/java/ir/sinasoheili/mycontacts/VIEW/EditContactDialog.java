@@ -1,7 +1,6 @@
 package ir.sinasoheili.mycontacts.VIEW;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +30,7 @@ public class EditContactDialog extends DialogFragment implements View.OnClickLis
     private EditText etPhone;
     private EditText etDate;
     private Button btnSubmit;
-    private Button btnCancel;
+    private Button btnDelete;
 
     private UserContact userContact;
 
@@ -84,8 +83,8 @@ public class EditContactDialog extends DialogFragment implements View.OnClickLis
         btnSubmit = view.findViewById(R.id.btn_dialog_submit);
         btnSubmit.setOnClickListener(this);
 
-        btnCancel = view.findViewById(R.id.btn_dialog_cancel);
-        btnCancel.setOnClickListener(this);
+        btnDelete = view.findViewById(R.id.btn_dialog_delete);
+        btnDelete.setOnClickListener(this);
     }
 
     private void fillItems()
@@ -129,9 +128,17 @@ public class EditContactDialog extends DialogFragment implements View.OnClickLis
                 EventBus.getDefault().post(userContact);
             }
         }
-        else if(v.equals(btnCancel))
+        else if(v.equals(btnDelete))
         {
+            //delete item
+            ContactPreferenceManager pref = ContactPreferenceManager.getInstance(getContext());
+            pref.deleteContact(getContext() , userContact);
+
+            //dismiss dialog
             this.dismiss();
+
+            //goto activity and finish activity
+            EventBus.getDefault().post(true);
         }
     }
 

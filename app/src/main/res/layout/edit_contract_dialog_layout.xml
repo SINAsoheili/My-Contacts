@@ -79,11 +79,11 @@
                 android:layout_marginBottom="@dimen/medium_margin">
 
                 <Button
-                    android:id="@+id/btn_dialog_cancel"
+                    android:id="@+id/btn_dialog_delete"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/dialog_btn_cancel"
+                    android:text="@string/dialog_btn_delete"
                     android:textAllCaps="false"
                     android:textColor="@color/list_item_text_color_white"
                     android:background="@null"
