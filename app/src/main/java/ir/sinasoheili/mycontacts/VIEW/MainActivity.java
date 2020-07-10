@@ -66,7 +66,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     {
         super.onResume();
 
-        EventBus.getDefault().register(this);
+        if(! EventBus.getDefault().isRegistered(this))
+        {
+            EventBus.getDefault().register(this);
+        }
 
         reloadItems();
     }
