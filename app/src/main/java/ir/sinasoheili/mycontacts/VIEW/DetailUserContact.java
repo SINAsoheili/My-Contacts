@@ -7,6 +7,7 @@ import android.Manifest;
 import android.content.ContentProviderResult;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +48,8 @@ public class DetailUserContact extends AppCompatActivity implements DetailUserCo
         setContentView(R.layout.activity_detail_user_contact);
 
         initObj();
+
+        setFade();
 
         EventBus.getDefault().register(this);
 
@@ -185,5 +188,16 @@ public class DetailUserContact extends AppCompatActivity implements DetailUserCo
     private void showMessage(String text)
     {
         Toast.makeText(getBaseContext() , text , Toast.LENGTH_SHORT).show();
+    }
+
+    private void setFade() //set fade for animation transition
+    {
+        Fade fade = new Fade();
+
+        fade.excludeTarget(android.R.id.statusBarBackground , true);
+        fade.excludeTarget(android.R.id.navigationBarBackground , true);
+
+        getWindow().setEnterTransition(fade);
+        getWindow().setExitTransition(fade);
     }
 }

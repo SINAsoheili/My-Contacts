@@ -11,6 +11,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         setContentView(R.layout.activity_main);
 
         InitObj();
+
+        setFade();
 
         if(checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED)
         {
@@ -164,5 +167,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         {
             reloadItems();
         }
+    }
+
+    private void setFade() //set fade for animation transition
+    {
+        Fade fade = new Fade();
+
+        fade.excludeTarget(R.id.toolbar , false);
+        fade.excludeTarget(android.R.id.statusBarBackground , true);
+        fade.excludeTarget(android.R.id.navigationBarBackground , true);
+
+        getWindow().setEnterTransition(fade);
+        getWindow().setExitTransition(fade);
     }
 }
