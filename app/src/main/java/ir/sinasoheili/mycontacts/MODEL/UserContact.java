@@ -12,23 +12,24 @@ public class UserContact implements Serializable
     private String phone;
     private String birthDate;
     private String imagePath;
+    private String id;
 
     //Constructor
-    public UserContact(String name , String phone)
+    public UserContact(String id , String name , String phone)
     {
         this.name = name;
         this.phone = phone;
     }
 
-    public UserContact(String name , String phone , String birthDate)
+    public UserContact(String id , String name , String phone , String birthDate)
     {
-        this(name , phone);
+        this(id , name , phone);
         this.birthDate = birthDate;
     }
 
-    public UserContact(String name, String phone , String birthDate , String imagePath)
+    public UserContact(String id , String name, String phone , String birthDate , String imagePath)
     {
-        this(name, phone , birthDate);
+        this(id , name, phone , birthDate);
         this.imagePath = imagePath;
     }
 
@@ -53,6 +54,10 @@ public class UserContact implements Serializable
         return imagePath;
     }
 
+    public String getId() {
+        return id;
+    }
+
     //Setter
     public void setName(String name)
     {
@@ -72,6 +77,11 @@ public class UserContact implements Serializable
     public void setImagePath(String imagePath)
     {
         this.imagePath = imagePath;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
     }
 
     //toString

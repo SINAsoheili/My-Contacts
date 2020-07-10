@@ -3,6 +3,7 @@ package ir.sinasoheili.mycontacts.PRESENTER;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,11 @@ public class ContactManager
     {
         ArrayList<UserContact> contacts = new ArrayList<>();
 
-        String[] columns = {ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME , ContactsContract.CommonDataKinds.Phone.NUMBER};
+        String[] columns = {
+                ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME ,
+                ContactsContract.CommonDataKinds.Phone.NUMBER ,
+                ContactsContract.CommonDataKinds.Phone._ID
+        };
 
         Cursor cursor = context.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 columns, null, null, null);
@@ -23,10 +28,11 @@ public class ContactManager
 
         do
         {
+            String id = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID));
             String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-            contacts.add(new UserContact(name , phone));
+            contacts.add(new UserContact(id , name , phone));
         }
         while (cursor.moveToNext());
 
