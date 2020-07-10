@@ -4,13 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.ContentProviderResult;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import ir.sinasoheili.mycontacts.MODEL.UserContact;
 import ir.sinasoheili.mycontacts.PRESENTER.DetailUserContactContract;
@@ -41,6 +46,8 @@ public class DetailUserContact extends AppCompatActivity implements DetailUserCo
 
         initObj();
 
+        EventBus.getDefault().register(this);
+
         //get user contact
         Bundle bundle = getIntent().getExtras();
         if((bundle != null)&&(bundle.containsKey(UserContact.INTENT_KEY)))
@@ -48,6 +55,14 @@ public class DetailUserContact extends AppCompatActivity implements DetailUserCo
             userContact = (UserContact) bundle.get(UserContact.INTENT_KEY);
             fillContent();
         }
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+        EventBus.getDefault().unregister(this);
     }
 
     private void initObj()
@@ -93,7 +108,7 @@ public class DetailUserContact extends AppCompatActivity implements DetailUserCo
         }
         else if(v.equals(btnEdit))
         {
-            Toast.makeText(this, "EDIT", Toast.LENGTH_SHORT).show();
+            showEditDialog();
         }
     }
 
@@ -125,5 +140,18 @@ public class DetailUserContact extends AppCompatActivity implements DetailUserCo
                 presenter.dial(userContact);
             }
         }
+    }
+
+    private void showEditDialog()
+    {
+        EditContactDialog dialog = new EditContactDialog(userContact);
+        dialog.show(getSupportFragmentManager() , null);
+    }
+
+    @Subscribe
+    public void getNewUserContact(UserContact newUserContact)
+    {
+        userContact = newUserContact;
+        fillContent();
     }
 }

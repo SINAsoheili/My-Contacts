@@ -13,4 +13,7 @@
 
     <color name="detail_activity_card_background">#33373A</color>
 
+    <color name="dialog_background">#33373A</color>
+    <color name="dialog_hint_color">#009688</color>
+
 </resources>

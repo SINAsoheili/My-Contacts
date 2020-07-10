@@ -19,7 +19,7 @@
         android:layout_marginTop="@dimen/detail_activity_large_margin"
         android:layout_marginLeft="@dimen/medium_margin"
         android:layout_marginRight="@dimen/medium_margin"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="@dimen/card_radius"
         />
 
     <androidx.cardview.widget.CardView
@@ -89,7 +89,7 @@
         android:layout_marginLeft="@dimen/medium_margin"
         android:layout_marginRight="@dimen/medium_margin"
         android:layout_marginBottom="@dimen/large_margin"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="@dimen/card_radius"
         android:backgroundTint="@color/detail_activity_card_background">
 
         <LinearLayout

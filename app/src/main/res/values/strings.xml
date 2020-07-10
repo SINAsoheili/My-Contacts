@@ -2,4 +2,14 @@
     <string name="app_name">My Contacts</string>
 
     <string name="not_permission">if you don\'t get %s permission this application can\'t work properly</string>
+
+    <string name="dialog_btn_submit">submit</string>
+    <string name="dialog_btn_cancel">cancel</string>
+
+    <string name="dialog_error_empty">please insert %s</string>
+
+    <string name="hint_name">Name</string>
+    <string name="hint_phone">Phone</string>
+    <string name="hint_date">Birth Day</string>
+
 </resources>

@@ -54,6 +54,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         }
     }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        if(checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)
+        {
+            presenter.readAllContact();
+        }
+    }
+
     private void InitObj()
     {
         lv = findViewById(R.id.lv_contact_list);

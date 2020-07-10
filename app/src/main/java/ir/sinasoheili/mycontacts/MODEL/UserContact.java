@@ -17,6 +17,7 @@ public class UserContact implements Serializable
     //Constructor
     public UserContact(String id , String name , String phone)
     {
+        this.id = id;
         this.name = name;
         this.phone = phone;
     }
