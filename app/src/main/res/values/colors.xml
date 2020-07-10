@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimaryDark">#0E0E0E</color>
     <color name="colorAccent">#03DAC5</color>
 
     <color name="general_background">#1B1B1B</color>
 
     <color name="list_item_text_color_black">#202020</color>
     <color name="list_item_text_color_white">#FFFFFF</color>
+    <color name="list_item_image_view_background">#242729</color>
 
-    <color name="toolbar_background">#6200EE</color>
+    <color name="toolbar_background">#191919</color>
 
-    <color name="detail_activity_card_background">#33373A</color>
+<!--    33373A-->
+    <color name="detail_activity_card_background">#2A2D30</color>
+    <color name="detail_activity_image_view_background">#242729</color>
 
     <color name="dialog_background">#33373A</color>
     <color name="dialog_hint_color">#00AF9F</color>

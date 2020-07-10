@@ -38,8 +38,9 @@
             android:id="@+id/detail_activity_iv"
             android:layout_width="@dimen/detail_activity_image_size"
             android:layout_height="@dimen/detail_activity_image_size"
-            android:background="@drawable/ic_launcher_background"
-            android:foreground="@drawable/ic_launcher_foreground"
+            android:src="@drawable/user"
+            android:background="@color/detail_activity_image_view_background"
+            android:padding="@dimen/detail_activity_image_padding"
             android:scaleType="fitXY"
             />
 

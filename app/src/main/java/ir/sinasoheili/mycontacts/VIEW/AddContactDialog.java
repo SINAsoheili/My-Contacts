@@ -1,10 +1,12 @@
 package ir.sinasoheili.mycontacts.VIEW;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -21,8 +23,7 @@ import ir.sinasoheili.mycontacts.MODEL.UserContact;
 import ir.sinasoheili.mycontacts.PRESENTER.ContactPreferenceManager;
 import ir.sinasoheili.mycontacts.R;
 
-public class AddContactDialog extends DialogFragment implements View.OnClickListener
-{
+public class AddContactDialog extends DialogFragment implements View.OnClickListener, View.OnFocusChangeListener {
     private TextInputLayout tilName;
     private TextInputLayout tilPhone;
     private TextInputLayout tilDate;
@@ -69,6 +70,8 @@ public class AddContactDialog extends DialogFragment implements View.OnClickList
         etName = view.findViewById(R.id.et_dialog_name);
         etPhone = view.findViewById(R.id.et_dialog_phone);
         etDate = view.findViewById(R.id.et_dialog_date);
+        etDate.setOnFocusChangeListener(this);
+        etDate.setOnClickListener(this);
 
         btnAdd = view.findViewById(R.id.btn_dialog_add);
         btnAdd.setOnClickListener(this);
@@ -107,6 +110,7 @@ public class AddContactDialog extends DialogFragment implements View.OnClickList
                             ));
                 }
 
+
                 this.dismiss();
 
                 Toast.makeText(getContext() , getString(R.string.add_item) , Toast.LENGTH_SHORT).show();
@@ -114,6 +118,10 @@ public class AddContactDialog extends DialogFragment implements View.OnClickList
                 //say to main activity reload list of contact
                 EventBus.getDefault().post(true);
             }
+        }
+        else if(v.equals(etDate))
+        {
+            showDateDialogPicker();
         }
     }
 
@@ -158,5 +166,27 @@ public class AddContactDialog extends DialogFragment implements View.OnClickList
         tilDate.setErrorEnabled(false);
          */
         return true;
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus)
+    {
+        if(v.equals(etDate) && hasFocus)
+        {
+            showDateDialogPicker();
+        }
+    }
+
+    private void showDateDialogPicker()
+    {
+        DatePickerDialog dialog = new DatePickerDialog(getContext());
+        dialog.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
+            {
+                etDate.setText(year+"/"+month+"/"+dayOfMonth);
+            }
+        });
+        dialog.show();
     }
 }

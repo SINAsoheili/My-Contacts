@@ -89,9 +89,27 @@ public class DetailUserContact extends AppCompatActivity implements DetailUserCo
 
     private void fillContent()
     {
-        tvName.setText(userContact.getName());
-        tvPhone.setText(userContact.getPhone());
-        tvDate.setText(userContact.getBirthDate());
+        tvName.setText("Name :  "+userContact.getName());
+
+        String num = userContact.getPhone();
+        if(num.length() == 11)
+        {
+            tvPhone.setText("Phone :  "+num.substring(0,4)+"-"+num.substring(4,7)+"-"+num.substring(7));
+        }
+        else
+        {
+            tvPhone.setText("Phone :  "+num);
+        }
+
+        if(userContact.getBirthDate() == null)
+        {
+            tvDate.setText("Birth Date :  ");
+        }
+        else
+        {
+            tvDate.setText("Birth Date :  "+userContact.getBirthDate());
+        }
+
     }
 
     @Override
