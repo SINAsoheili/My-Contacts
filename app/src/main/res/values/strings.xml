@@ -3,12 +3,14 @@
 
     <string name="not_permission">if you don\'t get %s permission this application can\'t work properly</string>
 
-    <string name="dialog_btn_submit">submit</string>
+    <string name="dialog_btn_edit">edit</string>
     <string name="dialog_btn_delete">delete</string>
+    <string name="dialog_btn_add">add</string>
 
     <string name="dialog_error_empty">please insert %s</string>
 
-    <string name="delete_item">item deleted</string>
+    <string name="delete_item">Contact deleted</string>
+    <string name="add_item">new Contact added</string>
 
     <string name="hint_name">Name</string>
     <string name="hint_phone">Phone</string>

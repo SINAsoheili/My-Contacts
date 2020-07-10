@@ -71,40 +71,19 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <Button
+                android:id="@+id/btn_dialog_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:text="@string/dialog_btn_add"
+                android:textAllCaps="false"
+                android:textColor="@color/list_item_text_color_white"
+                android:background="@null"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
                 android:layout_marginTop="@dimen/large_margin"
-                android:layout_marginBottom="@dimen/medium_margin">
-
-                <Button
-                    android:id="@+id/btn_dialog_delete"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/dialog_btn_delete"
-                    android:textAllCaps="false"
-                    android:textColor="@color/list_item_text_color_white"
-                    android:background="@null"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:layout_marginEnd="@dimen/small_margin"
-                    />
-
-                <Button
-                    android:id="@+id/btn_dialog_submit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/dialog_btn_edit"
-                    android:textAllCaps="false"
-                    android:textColor="@color/list_item_text_color_white"
-                    android:background="@null"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:layout_marginEnd="@dimen/small_margin"
-                    />
-
-            </LinearLayout>
+                android:layout_marginBottom="@dimen/medium_margin"
+                />
 
         </LinearLayout>
 

@@ -20,6 +20,9 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -28,7 +31,8 @@ import ir.sinasoheili.mycontacts.PRESENTER.MainActivityContract;
 import ir.sinasoheili.mycontacts.PRESENTER.MainActivityPresenter;
 import ir.sinasoheili.mycontacts.R;
 
-public class MainActivity extends AppCompatActivity implements MainActivityContract.MainActivityContract_view, AdapterView.OnItemClickListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements MainActivityContract.MainActivityContract_view, AdapterView.OnItemClickListener, View.OnClickListener
+{
     private ListView lv;
     private Button btnAddContact;
 
@@ -59,10 +63,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     {
         super.onResume();
 
-        if(checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)
-        {
-            presenter.readAllContact();
-        }
+        EventBus.getDefault().register(this);
+
+        reloadItems();
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+
+        EventBus.getDefault().unregister(this);
     }
 
     private void InitObj()
@@ -133,7 +144,25 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     {
         if(v.equals(btnAddContact))
         {
-            Toast.makeText(MainActivity.this , "click" , Toast.LENGTH_SHORT).show();
+            AddContactDialog dialog = new AddContactDialog();
+            dialog.show(getSupportFragmentManager() , null);
+        }
+    }
+
+    private void reloadItems()
+    {
+        if(checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)
+        {
+            presenter.readAllContact();
+        }
+    }
+
+    @Subscribe
+    public void addNewContact(Boolean b)
+    {
+        if(b)
+        {
+            reloadItems();
         }
     }
 }

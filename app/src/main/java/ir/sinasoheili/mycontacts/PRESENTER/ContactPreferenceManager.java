@@ -127,4 +127,32 @@ public class ContactPreferenceManager
         pref.StoreContact(contacts);
     }
 
+    //add contact
+    public void addContact(Context context , UserContact UserContact)
+    {
+        ContactPreferenceManager pref = getInstance(context);
+        ArrayList<UserContact> contacts = pref.getContact();
+
+        contacts.add(UserContact);
+
+        pref.StoreContact(contacts);
+    }
+
+    //max id of contacts
+    public int getMaxId()
+    {
+        ContactPreferenceManager pref = getInstance(context);
+        ArrayList<UserContact> contacts = pref.getContact();
+
+        int max = -1;
+        for(int i=0 ; i<contacts.size() ; i++)
+        {
+            if(Integer.parseInt(contacts.get(i).getId()) > max)
+            {
+                max = Integer.parseInt(contacts.get(i).getId());
+            }
+        }
+
+        return  max;
+    }
 }
