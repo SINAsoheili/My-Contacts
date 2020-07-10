@@ -4,8 +4,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.widget.SimpleCursorAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import ir.sinasoheili.mycontacts.MODEL.UserContact;
 
@@ -36,6 +39,35 @@ public class ContactManager
         }
         while (cursor.moveToNext());
 
+        unique(contacts);
+        sort(contacts);
+
         return contacts;
+    }
+
+    public static void unique(ArrayList<UserContact> contact)
+    {
+        for(int i=0 ; i<contact.size() ; i++)
+        {
+            for(int j=i ; j<contact.size() ; j++)
+            {
+                if(contact.get(i).getName().equals(contact.get(j).getName()))
+                {
+                    contact.remove(j);
+                }
+            }
+        }
+    }
+
+    public static void sort(ArrayList<UserContact> contact)
+    {
+        Collections.sort(contact, new Comparator<UserContact>()
+        {
+            @Override
+            public int compare(UserContact o1, UserContact o2)
+            {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
     }
 }
