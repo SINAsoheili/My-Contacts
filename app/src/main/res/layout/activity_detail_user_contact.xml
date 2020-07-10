@@ -31,7 +31,8 @@
         app:layout_constraintLeft_toLeftOf="@id/detail_activity_card_background"
         app:layout_constraintRight_toRightOf="@id/detail_activity_card_background"
         app:layout_constraintVertical_bias="0.2"
-        app:cardCornerRadius="200dp">
+        app:cardCornerRadius="200dp"
+        android:transitionName="animate_transition_image">
 
         <ImageView
             android:id="@+id/detail_activity_iv"

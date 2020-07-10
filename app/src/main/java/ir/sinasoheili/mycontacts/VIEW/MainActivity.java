@@ -3,17 +3,19 @@ package ir.sinasoheili.mycontacts.VIEW;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -100,9 +102,19 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
         Intent intent = new Intent(MainActivity.this , DetailUserContact.class);
+
         UserContact uc = (UserContact) parent.getItemAtPosition(position);
         intent.putExtra(UserContact.INTENT_KEY , uc);
-        startActivity(intent);
+
+        CardView image_cv = view.findViewById(R.id.container_iv_user_contact_image_list_item);
+
+        ActivityOptionsCompat aoc = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                MainActivity.this ,
+               image_cv , image_cv.getTransitionName()
+        );
+
+
+        startActivity(intent , aoc.toBundle());
     }
 
     @Override
