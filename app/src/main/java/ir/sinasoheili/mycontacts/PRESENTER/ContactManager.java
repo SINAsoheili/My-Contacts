@@ -39,25 +39,25 @@ public class ContactManager
         }
         while (cursor.moveToNext());
 
-        unique(contacts);
+//        unique(contacts);
         sort(contacts);
 
         return contacts;
     }
 
-    public static void unique(ArrayList<UserContact> contact)
-    {
-        for(int i=0 ; i<contact.size() ; i++)
-        {
-            for(int j=i ; j<contact.size() ; j++)
-            {
-                if(contact.get(i).getName().equals(contact.get(j).getName()))
-                {
-                    contact.remove(j);
-                }
-            }
-        }
-    }
+//    public static void unique(ArrayList<UserContact> contact)
+//    {
+//        for(int i=0 ; i<contact.size() ; i++)
+//        {
+//            for(int j=i ; j<contact.size() ; j++)
+//            {
+//                if(contact.get(i).getName().equals(contact.get(j).getName()))
+//                {
+//                    contact.remove(j);
+//                }
+//            }
+//        }
+//    }
 
     public static void sort(ArrayList<UserContact> contact)
     {

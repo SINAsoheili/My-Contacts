@@ -36,7 +36,7 @@ public class MainActivityPresenter implements MainActivityContract.MainActivityC
         }
 
         ContactManager.sort(contacts);
-        ContactManager.unique(contacts);
+//        ContactManager.unique(contacts);
 
         mainActivityView.showContacts(contacts);
     }
