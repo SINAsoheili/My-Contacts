@@ -16,4 +16,6 @@
     <string name="hint_phone">Phone</string>
     <string name="hint_date">Birth Day</string>
 
+    <string name="empty_list">you don\'t have any contact</string>
+
 </resources>

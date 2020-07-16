@@ -27,6 +27,11 @@ public class ContactManager
         Cursor cursor = context.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 columns, null, null, null);
 
+        if(cursor.getCount() == 0)
+        {
+            return contacts;
+        }
+
         cursor.moveToFirst();
 
         do

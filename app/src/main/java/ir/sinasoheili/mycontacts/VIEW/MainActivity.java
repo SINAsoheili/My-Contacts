@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 {
     private ListView lv;
     private Button btnAddContact;
+    private TextView tv_empty_list;
 
     private final int REQUEST_CODE = 100; //request code for read contact
     private final String[] PERMISSIONS = {Manifest.permission.READ_CONTACTS};
@@ -87,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         lv = findViewById(R.id.lv_contact_list);
         lv.setOnItemClickListener(this);
 
+        tv_empty_list = findViewById(R.id.tv_empty_list);
+
         btnAddContact = findViewById(R.id.toolbar_btn_add_contact);
         btnAddContact.setOnClickListener(this);
 
@@ -115,6 +118,15 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         if(contacts == null)
         {
             contacts = new ArrayList<>();
+        }
+
+        if(contacts.size() == 0)
+        {
+            tv_empty_list.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            tv_empty_list.setVisibility(View.GONE);
         }
 
         UserContractListAdapter adapter = new UserContractListAdapter(getApplicationContext() , contacts);
